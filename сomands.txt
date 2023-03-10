@@ -1,0 +1,153 @@
+
+(venv) PS C:\Users\koles\SkillFactory\DjangoNewsPortal\news_portal> py manage.py shell           
+
+
+>>> from news.models  import *        
+>>> User.objects.create_user(username="Alex")
+>>> User.objects.create_user(username="Axel") 
+>>> User.objects.all()         
+<QuerySet [<User: koleso-tema>, <User: Alex>, <User: Axel>]>
+>>> User.objects.all()[0]
+<User: koleso-tema>
+>>> u1 = User.objects.all()[1]
+>>> u2 = User.objects.all()[2] 
+>>> u1
+<User: Alex>
+>>> u2
+<User: Axel>
+>>> Author.objects.create(authorUser=u1)      
+<Author: Author object (1)>
+>>> Author.objects.create(authorUser=u2) 
+<Author: Author object (2)>
+>>> Author.objects.all()
+<QuerySet [<Author: Author object (1)>, <Author: Author object (2)>]>
+>>> Category.objects.create(name='Новости спорта') 
+<Category: Category object (1)>
+>>> Category.objects.create(name='Игровые новости')
+<Category: Category object (2)>
+>>> Category.objects.create(name='Политика')        
+<Category: Category object (3)>
+>>> Category.objects.create(name='Для детей') 
+<Category: Category object (4)>
+>>> authorAlex = Author.objects.all()[0] 
+>>> authorAxel = Author.objects.all()[1] 
+>>> Post.objects.create(author=authorAlex, categoryType='AR', title='Из мира видео игр', text='В этом месяце нас ожидают новинки игр...') 
+<Post: Post object (1)>
+>>> Post.objects.create(author=authorAxel, categoryType='AR', title='Кто получит золотой мяч?', text='Все больше и больше вопросов...')          
+<Post: Post object (2)>
+>>> Post.objects.create(author=authorAxel, categoryType='NW', title='Пример для наших детей', text='Вчера в это самое время...')        
+<Post: Post object (3)>
+>>> Post.objects.get(id=1).title
+'Из мира видео игр'
+>>> Post.objects.get(id=1).postCategory.add(Category.objects.get(id=2))
+>>> Post.objects.get(id=2).postCategory.add(Category.objects.get(id=1)) 
+>>> Post.objects.get(id=3).postCategory.add(Category.objects.get(id=1)) 
+>>> Comment.objects.create(commentPost=Post.objects.get(id=1), commentUser=Author.objects.get(id=1).authorUser, text='Текст от Alex')
+<Comment: Comment object (1)>
+>>> Comment.objects.create(commentPost=Post.objects.get(id=2), commentUser=Author.objects.get(id=1).authorUser, text='Текст от Alex') 
+<Comment: Comment object (2)>
+>>> Comment.objects.create(commentPost=Post.objects.get(id=2), commentUser=Author.objects.get(id=2).authorUser, text='Текст от Axel') 
+<Comment: Comment object (3)>
+>>> Comment.objects.create(commentPost=Post.objects.get(id=3), commentUser=Author.objects.get(id=2).authorUser, text='Текст от Axel') 
+<Comment: Comment object (4)>
+>>> Comment.objects.create(commentPost=Post.objects.get(id=3), commentUser=Author.objects.get(id=1).authorUser, text='Текст от Alex') 
+<Comment: Comment object (5)>
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).like()
+>>> Post.objects.get(id=1).dislike()
+>>> Post.objects.get(id=1).dislike()
+>>> Post.objects.get(id=2).like()    
+>>> Post.objects.get(id=2).like()
+>>> Post.objects.get(id=2).like()
+>>> Post.objects.get(id=2).dislike()
+>>> Post.objects.get(id=2).dislike()
+>>> Post.objects.get(id=2).dislike()
+>>> Post.objects.get(id=3).like()    
+>>> Post.objects.get(id=3).like()
+>>> Post.objects.get(id=3).like()
+>>> Post.objects.get(id=3).like()
+>>> Post.objects.get(id=3).like()
+>>> Post.objects.get(id=3).like()
+>>> Post.objects.get(id=3).dislike()
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).like()
+>>> Comment.objects.get(id=1).dislike()
+>>> Comment.objects.get(id=1).dislike()
+>>> Comment.objects.get(id=1).dislike()
+>>> Comment.objects.get(id=1).dislike()
+>>> Comment.objects.get(id=2).like()    
+>>> Comment.objects.get(id=2).like()
+>>> Comment.objects.get(id=3).dislike()
+>>> Comment.objects.get(id=4).like()    
+>>> Comment.objects.get(id=4).like()
+>>> Comment.objects.get(id=4).like()
+>>> Comment.objects.get(id=4).like()
+>>> Comment.objects.get(id=4).like()
+>>> Comment.objects.get(id=5).like() 
+>>> Comment.objects.get(id=5).like()
+>>> Comment.objects.get(id=5).dislike()
+>>> Comment.objects.get(id=5).like()    
+>>> Comment.objects.get(id=5).dislike()
+>>> Comment.objects.get(id=5).dislike()
+>>> Comment.objects.get(id=5).dislike()
+>>> Comment.objects.get(id=5).rating  
+-1
+>>> Comment.objects.get(id=4).rating 
+5
+>>> Comment.objects.get(id=3).rating  
+-1
+>>> Comment.objects.get(id=2).rating 
+2
+>>> Comment.objects.get(id=1).rating 
+-1
+>>> Post.objects.get(id=1).rating       
+>>> Post.objects.get(id=2).rating
+>>> Post.objects.get(id=3).rating
+5
+>>> Author.objects.get(id=1).update_rating()
+>>> Author.objects.get(id=1).ratingAuthor   
+6
+>>> Author.objects.get(id=2).update_rating()
+>>> Author.objects.get(id=2).ratingAuthor    
+19
+>>> a = Author.objects.order_by('-ratingAuthor')[:1]
+>>> a
+<QuerySet [<Author: Author object (2)>]>
+>>> for i in a:
+...     i.ratingAuthor
+...     i.authorUser.username
+...       
+19
+'Axel'
+>>> p = Post.objects.order_by('-rating')[:1]
+>>> p
+<QuerySet [<Post: Post object (3)>]>
+>>> for i in p:
+...     i.author.authorUser
+...     i.dateCreation
+...     i.rating
+...     i.title
+...     i.preview()
+... 
+<User: Axel>
+datetime.datetime(2023, 3, 9, 17, 21, 51, 158356, tzinfo=datetime.timezone.utc)
+5
+'Пример для наших детей'
+'Вчера в это самое время......'
+>>> c = Comment.objects.order_by('-rating')[:1]
+>>> c
+<QuerySet [<Comment: Comment object (4)>]>
+>>> for i in c:
+...     i.commentUser.username
+...     i.text
+...     i.dateCreation
+...     i.rating
+... 
+'Axel'
+'Текст от Axel'
+datetime.datetime(2023, 3, 9, 18, 37, 25, 714717, tzinfo=datetime.timezone.utc)
+5
+>>>   
