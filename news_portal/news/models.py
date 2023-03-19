@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
+from django.urls import reverse
 
 
 # Create your models here.
@@ -19,6 +20,9 @@ class Author(models.Model):
 
         self.ratingAuthor = pRat * 3 + cRat
         self.save()
+
+    def __str__(self):
+        return self.authorUser.username
 
 
 class Category(models.Model):
@@ -57,7 +61,10 @@ class Post(models.Model):
         return self.text[0:123] + '...'
 
     def __str__(self):
-        return f'{self.title}: {self.text[:20]}'
+        return f'{self.title}: {self.text[:20]}: {self.author}'
+
+    def get_absolute_url(self):
+        return reverse('news_detail', args=[str(self.id)])
 
 
 class PostCategory(models.Model):

@@ -7,19 +7,20 @@
 
 {% block content %}
     <h1>Все новости</h1>
-    <h3>Всего новостей: {{ news|length }}</h3>
+    <h3>Всего новостей: {{ newss|length }}</h3>
     <hr>
     {% if news %}
 
     <!--<h3>{{ time_now|date:' d M Y' }}</h3>-->
     <!-- А вот так мы используем наш тег-->
     <h3>{% current_time '%b %d %Y' %}</h3>
-       <table align="center" width="600">
+       <table align="center" width="1200">
            <tr>
                <tr>
                    <td>Название</td>
                    <td>Описание</td>
                    <td>Дата публикации</td>
+                   <td>Автор публикации</td>
                </tr>
 
                <!-- Для каждого товара будете генерироваться новая строчка,
@@ -32,9 +33,10 @@
                     от переменных в Python. Здесь также можно получать доступ к
                     полям объекта модели. Например, здесь мы выводим имя,
                     в следующем столбце описание, и т.д.  -->
-                   <td>{{ newss.title|censor }}</td>
+                   <td>{{ newss.title|censor|truncatewords:5 }}</td>
                    <td>{{ newss.text|censor|truncatechars:20 }}</td>
                    <td>{{ newss.dateCreation|date:' d M Y' }}</td>
+                   <td>{{ newss.author }}</td>
                </tr>
                {% endfor %}
            </tr>
@@ -42,4 +44,27 @@
    {% else %}
        <h2>Новостей нет!</h2>
    {% endif %}
+
+    {# Добавляем пагинацию на страницу #}
+
+    {# Информация о предыдущих страницах #}
+    {% if page_obj.has_previous %}
+        <a href="?page=1">1</a>
+        {% if page_obj.previous_page_number != 1 %}
+            ...
+            <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+    {% endif %}
+
+    {# Информация о текущей странице #}
+    {{ page_obj.number }}
+
+    {# Информация о следующих страницах #}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+        {% if paginator.num_pages != page_obj.next_page_number %}
+            ...
+            <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    {% endif %}
 {% endblock content %}
