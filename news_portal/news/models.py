@@ -21,6 +21,7 @@ class Author(models.Model):
         self.ratingAuthor = pRat * 3 + cRat
         self.save()
 
+
     def __str__(self):
         return self.authorUser.username
 

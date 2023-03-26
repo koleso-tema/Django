@@ -1,5 +1,6 @@
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from datetime import datetime
 
 from django.urls import reverse_lazy
@@ -69,7 +70,9 @@ class NewsSearch(ListView):
         return context
 
 
-class NewsCreate(CreateView):
+class NewsCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',)
+    # raise_exception = True
     # Указываем нашу разработанную форму
     form_class = NewsForm
     # модель товаров
@@ -78,13 +81,15 @@ class NewsCreate(CreateView):
     template_name = 'news_edit.html'
 
 
-class NewsUpdate(UpdateView):
+class NewsUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post',)
     form_class = NewsForm
     model = Post
     template_name = 'news_edit.html'
 
 
-class NewsDelete(DeleteView):
+class NewsDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',)
     model = Post
     template_name = 'news_delete.html'
     success_url = reverse_lazy('news_list')
