@@ -26,4 +26,5 @@ urlpatterns = [
     path('news/update', include('news.urls')),
     path('news/delete', include('news.urls')),
 
+
 ]

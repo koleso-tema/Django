@@ -7,7 +7,7 @@ from .models import Post, Author, Category
 class NewsForm(forms.ModelForm):
     author = forms.ModelChoiceField(label='Aвтор', queryset=Author.objects.all())
     title = forms.CharField(label='Заголовок')
-    postCategory = forms.ModelChoiceField(label='Категория', queryset=Category.objects.all())
+    postCategory = forms.ModelMultipleChoiceField(label='Категория', queryset=Category.objects.all())
 
 
     class Meta:
@@ -17,6 +17,7 @@ class NewsForm(forms.ModelForm):
             'categoryType',
             'author',
             'text',
+            'postCategory',
 
 
         ]

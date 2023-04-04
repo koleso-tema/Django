@@ -27,6 +27,7 @@ class NewsFilter(FilterSet):
             'title': ['icontains'],
 
             'categoryType': ['exact'],
-            'author': ['exact']
+            'author': ['exact'],
+            'postCategory': ['exact'],
 
         }
