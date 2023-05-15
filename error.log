@@ -1,0 +1,1911 @@
+2023-05-13 20:16:03,227 ERROR Internal Server Error: /news/delete30/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa686d92a80>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:16:03,235 ERROR "POST /news/delete30/update/ HTTP/1.1" 500 335176 /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/servers/basehttp.py None
+2023-05-13 20:18:34,105 ERROR Internal Server Error: /news/delete30/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa687335680>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:45:33,061 ERROR Internal Server Error: /news/delete56/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9bf5a4fc0>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:45:33,068 ERROR "POST /news/delete56/update/ HTTP/1.1" 500 328709 /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/servers/basehttp.py None
+2023-05-13 20:47:07,096 ERROR Internal Server Error: /news/delete56/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'django.db.utils.OperationalError'>, OperationalError('database is locked'), <traceback object at 0x7fa9be5615c0>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 542, in save
+    self.instance.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/base.py", line 990, in _save_table
+    updated = self._do_update(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/base.py", line 1054, in _do_update
+    return filtered._update(values) > 0
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/query.py", line 1231, in _update
+    return query.get_compiler(self.db).execute_sql(CURSOR)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1982, in execute_sql
+    cursor = super().execute_sql(result_type)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1560, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/backends/sqlite3/base.py", line 328, in execute
+    return super().execute(query, params)
+django.db.utils.OperationalError: database is locked
+2023-05-13 20:47:07,621 ERROR Internal Server Error: /news/delete56/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9bf6bdcc0>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:47:31,653 ERROR Internal Server Error: /news/delete56/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9be559f00>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:47:55,146 ERROR Internal Server Error: /news/delete56/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9be85f680>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:48:14,428 ERROR Internal Server Error: /news/delete56/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9beb43e00>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:48:35,243 ERROR Internal Server Error: /news/delete40/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9be5453c0>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:50:35,479 ERROR Internal Server Error: /news/delete54/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9be69c200>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:50:54,646 ERROR Internal Server Error: /news/delete54/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9be6c8700>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:52:22,387 ERROR Internal Server Error: /news/26/update/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fa9be6e7300>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-13 20:52:22,389 ERROR "POST /news/26/update/ HTTP/1.1" 500 334850 /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/servers/basehttp.py None
+2023-05-14 20:11:47,627 ERROR Internal Server Error: /news/create/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7f86d0f1fc00>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 184, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-14 20:11:47,835 ERROR "POST /news/create/ HTTP/1.1" 500 328658 /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/servers/basehttp.py None
+2023-05-14 20:13:03,680 ERROR Internal Server Error: /news/create/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7f86d01d5ac0>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 184, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-14 20:13:03,728 ERROR "POST /news/create/ HTTP/1.1" 500 328866 /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/servers/basehttp.py None
+2023-05-14 20:31:59,342 ERROR Internal Server Error: /news/create/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 111 connecting to 127.0.0.1:6379. Connection refused.'), <traceback object at 0x7fcf1e05cb80>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 119, in reconnect_on_error
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 169, in _consume_from
+    self._pubsub.subscribe(key)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1623, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1458, in execute_command
+    self.connection = self.connection_pool.get_connection(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 698, in connect
+    sock = self.retry.call_with_retry(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/retry.py", line 46, in call_with_retry
+    return do()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 699, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 987, in _connect
+    raise err
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 975, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 446, in _reraise_as_library_errors
+    yield
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 787, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 365, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 161, in consume_from
+    return self.start(task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 139, in start
+    self._consume_from(initial_task_id)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 168, in _consume_from
+    with self.reconnect_on_error():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 122, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 376, in ensure
+    return retry_over_time(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/utils/functional.py", line 312, in retry_over_time
+    return fun(*args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/backends/redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/commands/core.py", line 1976, in mget
+    return self.execute_command("MGET", *args, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/client.py", line 1255, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 1442, in get_connection
+    connection.connect()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/redis/connection.py", line 704, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/contrib/auth/mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 184, in post
+    return super().post(request, *args, **kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/views/generic/edit.py", line 135, in form_valid
+    self.object = form.save()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 543, in save
+    self._save_m2m()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/forms/models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/db/models/fields/related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/home/artem/PycharmProjects/DjangoProject/Django/news_portal/news/signals.py", line 25, in notify_about_new_post
+    send_notifications.delay(instance.preview(), instance.pk, instance.title, subscribers)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 425, in delay
+    return self.apply_async(args, kwargs)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/task.py", line 575, in apply_async
+    return app.send_task(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/celery/app/base.py", line 785, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/kombu/connection.py", line 450, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 111 connecting to 127.0.0.1:6379. Connection refused.
+2023-05-14 20:31:59,472 ERROR "POST /news/create/ HTTP/1.1" 500 145 /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/servers/basehttp.py None
+2023-05-15 16:40:35,448 ERROR Internal Server Error: /news/ /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/utils/log.py (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('flatpages/default.htmll'), <traceback object at 0x7fdb6f0d30c0>)
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 132, in render
+    compiled_parent = self.get_parent(context)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 129, in get_parent
+    return self.find_template(parent, context)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 107, in find_template
+    template, origin = context.template.engine.find_template(
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/engine.py", line 161, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: flatpages/default.htmll
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/response.py", line 111, in render
+    self.content = self.rendered_content
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/response.py", line 89, in rendered_content
+    return template.render(context, self._request)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 63, in render
+    reraise(exc, self.backend)
+  File "/home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/template/backends/django.py", line 84, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: flatpages/default.htmll
+2023-05-15 16:40:36,015 ERROR "GET /news/?page=1 HTTP/1.1" 500 164053 /home/artem/PycharmProjects/DjangoProject/venv/lib/python3.10/site-packages/django/core/servers/basehttp.py None

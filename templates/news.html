@@ -1,0 +1,109 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load custom_tags %}
+{% load cash %}
+{% block title %}
+Новостной портал
+{% endblock title %}
+
+{% block content %}
+    <h1>Все новости</h1>
+    <h3>Всего новостей: {{ news|length }}</h3>
+
+    <form action="" method="get">
+        {{ filterset.form.as_p }}
+        <input type="submit" value="Найти" />
+    </form>
+    <hr>
+
+    {# Теперь будем проверять не request.user.is_authenticated, а конкретные права #}
+    {% if perms.news.add_post %}
+        <a href="{% url 'news_create' %}">Добавить новость</a>
+    {% endif %}
+
+    {% cache 30 if %}
+    {% if news %}
+
+    <!--<h3>{{ time_now|date:' d M Y' }}</h3>-->
+    <!-- А вот так мы используем наш тег-->
+        <h3>{% current_time '%b %d %Y' %}</h3>
+        <table align="center" width="1200">
+            <tr>
+                <tr>
+                    <td>Название</td>
+                    <td>Описание</td>
+                    <td>Дата публикации</td>
+                    <td>Автор публикации</td>
+                    <td>Категория</td>
+
+                    {# Условие получается составным. #}
+                    {% if perms.news.change_post or perms.news.delete_post %}
+                        <td>Действия</td>
+                    {% endif %}
+
+                </tr>
+
+                <!-- Для каждого товара будете генерироваться новая строчка,
+                т.е. новый HTML код, который указан в теле цикла.
+                При этом сам цикл работает точно так же, как и в Python.
+                news — переменная цикла, т.е. наш товар полученный из списка -->
+                {% for newss in news %}
+                    <tr>
+                       <!-- Не забываем, что переменные в шаблоне ничем не отличаются
+                        от переменных в Python. Здесь также можно получать доступ к
+                        полям объекта модели. Например, здесь мы выводим имя,
+                        в следующем столбце описание, и т.д.  -->
+                        <td>{{ newss.title|censor|truncatewords:5 }}</td>
+                        <td>{{ newss.text|censor|truncatechars:20 }}</td>
+                        <td>{{ newss.dateCreation|date:' d M Y' }}</td>
+                        <td>{{ newss.author }}</td>
+
+                        <td>
+                            {% for category in newss.postCategory.all %}
+                                <a href="{% url 'category_list' category.id %}">{{ category }}</a>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}
+                            {% if perms.news.change_post %}
+                            <a href="{% url 'news_update' pk=newss.id %}">Изменить</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}
+                            {% if perms.news.delete_post %}
+                            <a href="{% url 'news_delete' pk=newss.id %}">Удалить</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+        </table>
+    {% else %}
+        <h2>Новостей нет!</h2>
+    {% endif %}
+    {% endcache %}
+
+    {# Добавляем пагинацию на страницу #}
+
+    {# Информация о предыдущих страницах #}
+    {% if page_obj.has_previous %}
+        <a href="?page=1">1</a>
+        {% if page_obj.previous_page_number != 1 %}
+            ...
+            <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+    {% endif %}
+
+    {# Информация о текущей странице #}
+    {{ page_obj.number }}
+
+    {# Информация о следующих страницах #}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+        {% if paginator.num_pages != page_obj.next_page_number %}
+            ...
+            <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    {% endif %}
+{% endblock content %}
